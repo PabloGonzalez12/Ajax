@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang='es'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <meta name='keywords' content='html,css,js,web,entornocliente'>
+    <meta name='author' content='Pablo'>
+    <meta name='generator' content='visualstudio'>
+    <meta name='application-name' content='titulo'>
+    <title>Gas Stations in Spain</title>
+    <link rel='stylesheet' href='./src/css/style.css'>
+    <script type='module' src='./src/js/script.js' defer></script>
+</head>
+<body>
+    <header><h1>Gas stations in Spain</h1></header>
+    <main>
+        <section id="form">
+            <label for="province">Province:</label>
+            <select name="province" id="province">
+            </select>
+<br>
+            <label for="municipality">Municipality:</label>
+            <select name="municipality" id="municipality">
+                <option selected disabled>Select an option</option>
+            </select>
+<br>
+            <label for="fuel-type">Fuel type:</label>
+            <select name="fuel-type" id="fuel-type">
+            </select>
+<br>
+            <div>
+                <label for="open">Open now</label>
+                <input type="checkbox" name="open" id="open">                
+            </div>
+
+            <button id="search" type="button">Search</button>
+        </section>
+
+        <section id="gas-stations-list">
+
+        </section>
+    </main>
+    <footer></footer>
+</body>
+</html>

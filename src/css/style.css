@@ -1,0 +1,107 @@
+/* Reset some basic elements */
+body, h1, p, select, input, button {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* General body styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    padding: 20px;
+}
+
+/* Header styles */
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+/* Main form styles */
+main {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+section#form {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+section#form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+section#form select, section#form input[type="checkbox"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+section#form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+section#form button:hover {
+    background-color: #45a049;
+}
+
+/* Gas stations list styles */
+#gas-stations-list {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+}
+
+.station {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+    margin: 10px 0;
+}
+
+.station h3 {
+    margin-bottom: 10px;
+    color: #4CAF50;
+}
+
+.station p {
+    margin: 5px 0;
+}
+
+.station:last-child {
+    border-bottom: none;
+}
+
+
+main div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
