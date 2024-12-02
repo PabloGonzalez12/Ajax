@@ -62,28 +62,40 @@ searchButton.addEventListener("click", async () => {
     const stations = response.ListaEESSPrecio;
     const filteredStations = stations.filter((station) => {
         const hasFuelType = fuelTypeId ? station[fuelTypeId] && station[fuelTypeId] !== "" : true;
-        const isStationOpenNow = isOpen ? isStationOpen(station.Schedule) : true;
+        const isStationOpenNow = isOpen ? isStationInService(station.Horario) : true;
         return hasFuelType && isStationOpenNow;
     });
 
     displayStations(filteredStations, fuelTypeId);
 });
 
-// Function to check if a station is open
-function isStationOpen(schedule) {
-    if (!schedule) return false;
+// Station is open now
+function isStationInService(schedule) {
     const now = new Date();
-    const currentHour = now.getHours();
+    const currentDay = now.getDay();
+    const currentTime = now.getHours() * 60 + now.getMinutes();
 
-    if (schedule.includes("24H")) return true;
+    if (schedule.includes("L-D: 24H")) return true;
 
-    // This regex pattern matches time ranges in the format "HH:MM-HH:MM"
-    const match = schedule.match(/(\d{2}):(\d{2})-(\d{2}):(\d{2})/);
+    const daysMap = { L: 1, M: 2, X: 3, J: 4, V: 5, S: 6, D: 0 };
+    const hours = schedule.split(";");
 
-    if (match) {
-        const startHour = parseInt(match[1], 10);
-        const endHour = parseInt(match[3], 10);
-        return currentHour >= startHour && currentHour < endHour;
+    for (const hour of hours) {
+        const [days, timeRange] = hour.split(": ");
+        const [startDay, endDay] = days.split("-").map((d) => daysMap[d.trim()]);
+        const [start, end] = timeRange
+            .split("-")
+            .map((t) => t.split(":").reduce((h, m) => h * 60 + Number(m)));
+
+        if (
+            ((currentDay >= startDay && currentDay <= endDay) ||
+                (endDay < startDay &&
+                    (currentDay >= startDay || currentDay <= endDay))) &&
+            ((currentTime >= start && currentTime <= end) ||
+                (end < start && (currentTime >= start || currentTime <= end)))
+        ) {
+            return true;
+        }
     }
     return false;
 }
